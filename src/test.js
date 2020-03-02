@@ -1,18 +1,17 @@
-const string = `* {
+const string = `
+.skin * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-*::before,
-*::after {
+.skin *::before,
+.skin *::after {
   box-sizing: border-box;
-}
-body {
-  background: #ffe600;
-  min-height: 100vh;
 }
 .skin {
   position: relative;
+  background: #ffe600;
+  min-height: 50vh;
 }
 .nose {
   border-style: solid;
