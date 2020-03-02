@@ -1,6 +1,4 @@
-const string = `
-<style>
-* {
+const string = `* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -181,23 +179,21 @@ body {
 }
 .face.right {
   transform: translateX(180px);
-}
-
-</style>
-`
+}`
 let n = 1
 demo.innerText = string.substr(0, n)
 demo2.innerHTML = string.substr(0, n)
 
 console.log(n)
 
-let id = setInterval(()=>{
-    n+= 1
-    if(n > string.length){
-        window.clearInterval(id)
-        return
-    }
-    console.log(n+':'+string.substr(0, n));
-    demo.innerText  = string.substr(0, n)
-    demo2.innerHTML = string.substr(0, n)
-},0)
+let id = setInterval(() => {
+  n += 1
+  if (n > string.length) {
+    window.clearInterval(id)
+    return
+  }
+  console.log(n + ':' + string.substr(0, n))
+  demo.innerText = string.substr(0, n)
+  demo2.innerHTML = string.substr(0, n)
+  demo.scrollTop = demo.scrollHeight
+}, 0)
