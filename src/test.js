@@ -6,7 +6,7 @@ let time = 100
 let n = 1
 
 const player = {
-  const run = () => {
+  run: () => {
     n += 1
     if (n > string.length) {
       window.clearInterval(id)
@@ -16,33 +16,28 @@ const player = {
     demo.innerText = string.substr(0, n)
     demo2.innerHTML = string.substr(0, n)
     demo.scrollTop = demo.scrollHeight
+  },
+  play: () => {
+    return setInterval(run, time)
+  },
+  pause: () => {
+    window.clearInterval(id)
+  },
+  slow: () => {
+    pause()
+    time = 300
+    id = play()
+  },
+  normal: () => {
+    pause()
+    time = 100
+    id = play()
+  },
+  fast: () => {
+    pause()
+    time = 0
+    id = play()
   }
-}
-
-const play = () => {
-  return setInterval(run, time)
-}
-
-const pause = () => {
-  window.clearInterval(id)
-}
-
-const slow = () => {
-  pause()
-  time = 300
-  id = play()
-}
-
-const normal = () => {
-  pause()
-  time = 100
-  id = play()
-}
-
-const fast = () => {
-  pause()
-  time = 0
-  id = play()
 }
 
 let id = play()
