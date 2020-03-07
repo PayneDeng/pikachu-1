@@ -62,4 +62,4 @@ const player = {
     }
 }
 
-player.init()////
+player.init()
