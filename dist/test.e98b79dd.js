@@ -134,67 +134,72 @@ var _css = _interopRequireDefault(require("./css.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var n = 1;
-demo.innerText = _css.default.substr(0, n);
-demo2.innerHTML = _css.default.substr(0, n);
-var time = 100;
+var player = {
+  id: undefined,
+  time: 100,
+  ui: {
+    demo: document.querySelector('#demo'),
+    demo2: document.querySelector('#demo2')
+  },
+  events: {
+    '#btnPause': 'pause',
+    '#btnPlay': 'play',
+    '#btnSlow': 'slow',
+    '#btnNormal': 'normal',
+    '#btnFast': 'fast'
+  },
+  n: 1,
+  init: function init() {
+    player.ui.demo.innerText = _css.default.substr(0, player.n);
+    player.ui.demo2.innerHTML = _css.default.substr(0, player.n);
+    player.bindEvents();
+    player.play();
+  },
+  bindEvents: function bindEvents() {
+    for (var key in player.events) {
+      if (player.events.hasOwnProperty(key)) {
+        var value = player.events[key]; // pause / play / slow
 
-var run = function run() {
-  n += 1;
+        document.querySelector(key).onclick = player[value];
+      }
+    }
+  },
+  run: function run() {
+    player.n += 1;
 
-  if (n > _css.default.length) {
-    window.clearInterval(id);
-    return;
+    if (player.n > _css.default.length) {
+      window.clearInterval(player.id);
+      return;
+    }
+
+    player.ui.demo.innerText = _css.default.substr(0, player.n);
+    player.ui.demo2.innerHTML = _css.default.substr(0, player.n);
+    player.ui.demo.scrollTop = player.ui.demo.scrollHeight;
+  },
+  play: function play() {
+    player.id = setInterval(player.run, player.time);
+  },
+  pause: function pause() {
+    window.clearInterval(player.id);
+  },
+  slow: function slow() {
+    player.pause();
+    player.time = 300;
+    player.play();
+  },
+  normal: function normal() {
+    player.pause();
+    player.time = 100;
+    player.play();
+  },
+  fast: function fast() {
+    player.pause();
+    player.time = 0;
+    player.play();
   }
-
-  console.log(n + ':' + _css.default.substr(0, n));
-  demo.innerText = _css.default.substr(0, n);
-  demo2.innerHTML = _css.default.substr(0, n);
-  demo.scrollTop = demo.scrollHeight;
 };
-
-var play = function play() {
-  return setInterval(run, time);
-};
-
-var pause = function pause() {
-  window.clearInterval(id);
-};
-
-var slow = function slow() {
-  pause();
-  time = 300;
-  id = play();
-};
-
-var normal = function normal() {
-  pause();
-  time = 100;
-  id = play();
-};
-
-var fast = function fast() {
-  pause();
-  time = 0;
-  id = play();
-};
-
-var id = play();
-
-btnPause.onclick = function () {
-  pause();
-};
-
-btnPlay.onclick = function () {
-  id = play();
-};
-
-btnSlow.onclick = slow;
-btnNormal.onclick = normal;
-btnFast.onclick = fast; //const x = () => {// x 和 run 等价
-//  run()
-//}
-},{"./css.js":"css.js"}],"C:/Users/payne/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+player.init();
+},{"./css.js":"css.js"}],"../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -222,7 +227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59523" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62374" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -398,5 +403,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/payne/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","test.js"], null)
+},{}]},{},["../../../../.config/yarn/global/node_modules/parcel/src/builtins/hmr-runtime.js","test.js"], null)
 //# sourceMappingURL=/test.e98b79dd.js.map
